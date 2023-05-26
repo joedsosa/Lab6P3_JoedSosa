@@ -22,6 +22,7 @@ int main() {
     vector <Cazador*> cazadores;
     vector < Luna_Superior*> lunasSuperiores;
     Pilar* pilar = nullptr;
+    Luna_Superior* lunaSuperior = nullptr;
 
     int opcion = 0;
     while (opcion != 7) {
@@ -57,6 +58,7 @@ int main() {
             default:
                 cout << "Opcion Invalida, Se utilizara Respiracion Agua por defecto";
                 respiracion = new RespiracionAgua();
+                break;
             }
             cazadores.push_back(new Cazador(nombre, respiracion));
             break;
@@ -133,53 +135,54 @@ int main() {
             break;
         }
         case 6: {
-            Pilar* pilar = new Pilar;
-            Luna_Superior* lunaSuperior = new Luna_Superior;
+            if (pilar != nullptr && lunaSuperior != nullptr) {
+                bool turnoPilar = true;
+                bool turnoLunaSuperior = false;
 
-            bool turnoPilar = true;
-            bool turnoLunaSuperior = false;
-
-            while (pilar.getVida() > 0 && lunaSuperior.getVida() > 0) {
-                if (turnoPilar) {
-                    std::cout << "Turno del Pilar" << std::endl;
-                    int puntosAtaque = pilar.calcularAtaque();
-                    lunaSuperior.recibirAtaque(puntosAtaque);
-                    std::cout << "El Pilar ataca a la Luna Superior y le causa " << puntosAtaque << " puntos de daño." << std::endl;
-                    pilar.imprimir();
-                    lunaSuperior.imprimir();
-                    turnoPilar = false;
-                    turnoLunaSuperior = true;
+                while (pilar->getVida() > 0 && lunaSuperior->getVida() > 0) {
+                    if (turnoPilar) {
+                        std::cout << "Turno del Pilar" << std::endl;
+                        int puntosAtaque = pilar->calcularAtaque();
+                        lunaSuperior->recibriAtaque(puntosAtaque);
+                        std::cout << "El Pilar ataca a la Luna Superior y le causa " << puntosAtaque << " puntos de daño." << std::endl;
+                        pilar->imprimir();
+                        lunaSuperior->imprimir();
+                        turnoPilar = false;
+                        turnoLunaSuperior = true;
+                    }
+                    else if (turnoLunaSuperior) {
+                        std::cout << "Turno de la Luna Superior" << std::endl;
+                        int puntosAtaque = lunaSuperior->calcularAtaque();
+                        pilar->recibirAtaque(puntosAtaque);
+                        std::cout << "La Luna Superior ataca al Pilar y le causa " << puntosAtaque << " puntos de daño." << std::endl;
+                        pilar->imprimir();
+                        lunaSuperior->imprimir();
+                        turnoPilar = true;
+                        turnoLunaSuperior = false;
+                    }
+                    
+                    if (pilar->getVida() > 0 && rand() % 100 < 5) {
+                        pilar->recuperarVida();
+                        std::cout << "El Pilar ha recuperado el 100% de su vida." << std::endl;
+                        pilar->imprimir();
+                        lunaSuperior->imprimir();
+                    }
                 }
-                else if (turnoLunaSuperior) {
-                    std::cout << "Turno de la Luna Superior" << std::endl;
-                    int puntosAtaque = lunaSuperior.getAtaque();
-                    pilar.recibirAtaque(puntosAtaque);
-                    std::cout << "La Luna Superior ataca al Pilar y le causa " << puntosAtaque << " puntos de daño." << std::endl;
-                    pilar.imprimir();
-                    lunaSuperior.imprimir();
-                    turnoPilar = true;
-                    turnoLunaSuperior = false;
-                }
 
-                // Verificar si el pilar recupera el 100% de su vida
-                if (pilar.getVida() > 0 && rand() % 100 < 5) {
-                    pilar.recuperarVida();
-                    std::cout << "El Pilar ha recuperado el 100% de su vida." << std::endl;
-                    pilar.imprimir();
-                    lunaSuperior.imprimir();
+                if (pilar->getVida() <= 0) {
+                    std::cout << "La Luna Superior ha ganado la pelea." << std::endl;
                 }
-            }
-
-            if (pilar.getVida() <= 0) {
-                std::cout << "La Luna Superior ha ganado la pelea." << std::endl;
+                else {
+                    std::cout << "El Pilar ha ganado la pelea." << std::endl;
+                    pilar->incrementarVictorias();
+                }
             }
             else {
-                std::cout << "El Pilar ha ganado la pelea." << std::endl;
-                pilar.incrementarVictorias();
+                std::cout << "No se han creado un Pilar y/o una Luna Superior." << std::endl;
             }
-
             break;
         }
+        
         case 7: {
             cout << "Ha salido";
             break;

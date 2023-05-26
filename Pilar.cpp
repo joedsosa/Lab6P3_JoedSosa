@@ -4,20 +4,21 @@ using namespace std;
 Pilar::Pilar(const string& nombre, Respiracion* respiracion, int lunasSuperioresVencidas)
     : Cazador(nombre, respiracion), lunasSuperioresVencidas(lunasSuperioresVencidas) {
     generarVidaExtra();
-    generarPuntosAtaqueExtra();
+    
     vida += vidaExtra;
     puntosAtaque += 100;
 }
-Pilar::Pilar(){
-    victorias = 0;
-}
+
 
 Pilar::~Pilar() {}
 int Pilar::getVida() const {
     return vida;
 }
 
-int Pilar::IncrementarVictorias()const {
+int Pilar::getVictorias() const {
+    return victorias;
+}
+void Pilar::incrementarVictorias() {
     victorias++;
 }
 void Pilar::imprimir() const {
@@ -25,6 +26,10 @@ void Pilar::imprimir() const {
     cout << "Lunas superiores vencidas: " << lunasSuperioresVencidas << endl;
     cout << "Vida extra: " << vidaExtra << endl;
     cout << "----------------------" << endl;
+}
+void Pilar::recuperarVida() {
+    // Recuperar el 100% de la vida
+    vida = (vida * 100);
 }
 
 int Pilar::calcularAtaque() const {

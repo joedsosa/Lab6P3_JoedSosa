@@ -3,7 +3,7 @@
 using namespace std;
 class Luna_Superior{
 public: 
-	Luna_Superior();
+	
 	Luna_Superior(const string& nombre);
 	void imprimir() const;
 	int calcularAtaque() const;
