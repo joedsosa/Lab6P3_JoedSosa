@@ -9,10 +9,11 @@ class Cazador {
 public:
     Cazador(const string& nombre, Respiracion* respiracion);
     virtual ~Cazador();
-
+    Cazador();
     void imprimir() const;
     int calcularAtaque() const;
     void recibirAtaque(int puntos);
+   
 
 protected:
     string nombre;

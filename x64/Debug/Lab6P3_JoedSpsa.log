@@ -1,3 +1,9 @@
-﻿  Lab6P3_JoedSpsa.cpp
-C:\Users\joeds\OneDrive\Escritorio\Progra III\Lab6P3_JoedSpsa\Lab6P3_JoedSpsa.cpp(20,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Lab6P3_JoedSpsa.vcxproj -> C:\Users\joeds\OneDrive\Escritorio\Progra III\Lab6P3_JoedSpsa\x64\Debug\Lab6P3_JoedSpsa.exe
+﻿  Cazador.cpp
+  Lab6P3_JoedSpsa.cpp
+C:\Users\joeds\OneDrive\Escritorio\Progra III\Lab6P3_JoedSpsa\Lab6P3_JoedSpsa.cpp(51,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\joeds\OneDrive\Escritorio\Progra III\Lab6P3_JoedSpsa\Lab6P3_JoedSpsa.cpp(171,17): error C2660: 'simulacion': function does not take 0 arguments
+C:\Users\joeds\OneDrive\Escritorio\Progra III\Lab6P3_JoedSpsa\Lab6P3_JoedSpsa.cpp(10,6): message : see declaration of 'simulacion'
+C:\Users\joeds\OneDrive\Escritorio\Progra III\Lab6P3_JoedSpsa\Lab6P3_JoedSpsa.cpp(171,17): message : while trying to match the argument list '()'
+  Luna_Superior.cpp
+  Pilar.cpp
+  Generating Code...

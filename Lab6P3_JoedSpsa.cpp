@@ -6,6 +6,7 @@
 #include "Luna_Superior.h"
 #include <iostream>
 using namespace std;
+
 void menu() {
     cout << "Bienvenido" << endl;
     cout << "1. Crear Cazador" << endl;
@@ -29,37 +30,37 @@ int main() {
 
         switch (opcion) {
         case 1: {
-                string nombre;
-                int tipoRespiracion;
+            string nombre;
+            int tipoRespiracion;
 
-                cout << "Ingrese el nombre del cazador: ";
-                cin >> nombre;
-                cout << "Seleccione el tipo de respiracion: " << endl;
-                cout << "1. Agua" << endl;
-                cout << "2. Fuego " << endl;
-                cout << "3. Roca" << endl;
-                cout << "Ingrese una opcion: ";
-                cin >> tipoRespiracion;
+            cout << "Ingrese el nombre del cazador: ";
+            cin >> nombre;
+            cout << "Seleccione el tipo de respiracion: " << endl;
+            cout << "1. Agua" << endl;
+            cout << "2. Fuego " << endl;
+            cout << "3. Roca" << endl;
+            cout << "Ingrese una opcion: ";
+            cin >> tipoRespiracion;
 
-                Respiracion* respiracion = nullptr;
+            Respiracion* respiracion = nullptr;
 
-                switch (tipoRespiracion) {
-                case 1: 
-                    respiracion = new RespiracionAgua();
-                    break;
-                case 2: 
-                    respiracion = new RespiracionFuego();
-                    break;
-                case 3: 
-                    respiracion = new RespiracionRoca();
-                    break;
-                default: 
-                    cout << "Opcion Invalida, Se utilizara Respiracion Agua por defecto";
-                    respiracion = new RespiracionAgua();
-                }
-                cazadores.push_back(new Cazador(nombre, respiracion));
+            switch (tipoRespiracion) {
+            case 1:
+                respiracion = new RespiracionAgua();
                 break;
+            case 2:
+                respiracion = new RespiracionFuego();
+                break;
+            case 3:
+                respiracion = new RespiracionRoca();
+                break;
+            default:
+                cout << "Opcion Invalida, Se utilizara Respiracion Agua por defecto";
+                respiracion = new RespiracionAgua();
             }
+            cazadores.push_back(new Cazador(nombre, respiracion));
+            break;
+        }
         case 2: {
             string nombre;
             int tipoRespiracion;
@@ -80,7 +81,7 @@ int main() {
 
             Respiracion* respiracion = nullptr;
 
-            switch (tipoRespiracion){
+            switch (tipoRespiracion) {
             case 1:
                 respiracion = new RespiracionAgua();
                 break;
@@ -109,13 +110,100 @@ int main() {
             lunasSuperiores.push_back(new Luna_Superior(nombre));
             break;
         }
-        case 4: cout << "-------------Cazadores---------" << endl;
+        case 4: {
+            cout << "----------Cazadores---------" << endl;
             for (const auto& cazador : cazadores) {
                 cazador->imprimir();
             }
+            if (pilar != nullptr) {
+                cout << "-----Pilar------" << endl;
+                pilar->imprimir();
+                cout << "----------------" << endl;
+            }
+            break;
+
         }
-        
-    }
+        case 5: {
+            cout << "---------Lunas Superiores-------" << endl;
+            for (const auto& lunaSuperior : lunasSuperiores) {
+                lunaSuperior->imprimir();
+                cout << "--------------------------------" << endl;
+
+            }
+            break;
+        }
+        case 6: {
+            Pilar* pilar = new Pilar;
+            Luna_Superior* lunaSuperior = new Luna_Superior;
+
+            bool turnoPilar = true;
+            bool turnoLunaSuperior = false;
+
+            while (pilar.getVida() > 0 && lunaSuperior.getVida() > 0) {
+                if (turnoPilar) {
+                    std::cout << "Turno del Pilar" << std::endl;
+                    int puntosAtaque = pilar.calcularAtaque();
+                    lunaSuperior.recibirAtaque(puntosAtaque);
+                    std::cout << "El Pilar ataca a la Luna Superior y le causa " << puntosAtaque << " puntos de daño." << std::endl;
+                    pilar.imprimir();
+                    lunaSuperior.imprimir();
+                    turnoPilar = false;
+                    turnoLunaSuperior = true;
+                }
+                else if (turnoLunaSuperior) {
+                    std::cout << "Turno de la Luna Superior" << std::endl;
+                    int puntosAtaque = lunaSuperior.getAtaque();
+                    pilar.recibirAtaque(puntosAtaque);
+                    std::cout << "La Luna Superior ataca al Pilar y le causa " << puntosAtaque << " puntos de daño." << std::endl;
+                    pilar.imprimir();
+                    lunaSuperior.imprimir();
+                    turnoPilar = true;
+                    turnoLunaSuperior = false;
+                }
+
+                // Verificar si el pilar recupera el 100% de su vida
+                if (pilar.getVida() > 0 && rand() % 100 < 5) {
+                    pilar.recuperarVida();
+                    std::cout << "El Pilar ha recuperado el 100% de su vida." << std::endl;
+                    pilar.imprimir();
+                    lunaSuperior.imprimir();
+                }
+            }
+
+            if (pilar.getVida() <= 0) {
+                std::cout << "La Luna Superior ha ganado la pelea." << std::endl;
+            }
+            else {
+                std::cout << "El Pilar ha ganado la pelea." << std::endl;
+                pilar.incrementarVictorias();
+            }
+
+            break;
+        }
+        case 7: {
+            cout << "Ha salido";
+            break;
+        }
+
+        default:
+            cout << "Opcion Invalida, ingrese otra porfavor";
+            break;
+        }
+        for (const auto& cazador : cazadores) {
+            delete cazador;
+        }
+        cazadores.clear();
+
+        for (const auto& lunaSuperior : lunasSuperiores) {
+            delete lunaSuperior;
+        }
+        lunasSuperiores.clear();
+
+        delete pilar;
+
+        return 0;
 }
+    }
+
 
 

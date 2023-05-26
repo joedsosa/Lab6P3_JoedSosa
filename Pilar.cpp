@@ -8,9 +8,18 @@ Pilar::Pilar(const string& nombre, Respiracion* respiracion, int lunasSuperiores
     vida += vidaExtra;
     puntosAtaque += 100;
 }
+Pilar::Pilar(){
+    victorias = 0;
+}
 
 Pilar::~Pilar() {}
+int Pilar::getVida() const {
+    return vida;
+}
 
+int Pilar::IncrementarVictorias()const {
+    victorias++;
+}
 void Pilar::imprimir() const {
     Cazador::imprimir();
     cout << "Lunas superiores vencidas: " << lunasSuperioresVencidas << endl;
@@ -34,6 +43,4 @@ void Pilar::generarVidaExtra() {
     vidaExtra = rand() % 11 + 80;
 }
 
-void Pilar::generarPuntosAtaqueExtra() {
-    // No se necesita implementar en este caso
-}
+
