@@ -127,7 +127,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Cazador.cpp" />
+    <ClCompile Include="Katana.cpp" />
     <ClCompile Include="Lab6P3_JoedSpsa.cpp" />
+    <ClCompile Include="Luna_Superior.cpp" />
+    <ClCompile Include="Pilar.cpp" />
+    <ClCompile Include="Respiracion.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Cazador.h" />
+    <ClInclude Include="Katana.h" />
+    <ClInclude Include="Luna_Superior.h" />
+    <ClInclude Include="Pilar.h" />
+    <ClInclude Include="Respiracion.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

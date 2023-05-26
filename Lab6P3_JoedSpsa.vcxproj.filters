@@ -18,5 +18,37 @@
     <ClCompile Include="Lab6P3_JoedSpsa.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Cazador.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Katana.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Respiracion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pilar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Luna_Superior.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Cazador.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Katana.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Respiracion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pilar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Luna_Superior.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
